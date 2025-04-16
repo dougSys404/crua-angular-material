@@ -1,0 +1,8 @@
+Criando uma camada de serviço:
+
+1 - Caminho mais fácil, instalação pelo terminal
+
+na pasta raiz do projeto execute o seguinte comando:
+(também pode especificar um caminho específico caso queira)
+
+ng generate serice <nome do serviço>
