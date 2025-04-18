@@ -20,9 +20,18 @@ export class ClienteService {
 
   }
 
-  pesquisarClientes(nome: string) : Cliente[]{
+  pesquisarClientes(nomeBusca: string) : Cliente[]{
 
-    return this.obterStorage();
+    const clientes = this.obterStorage();
+
+    if(!nomeBusca){
+      return clientes
+    }
+
+    // cliente.nome: jose da silva
+    // nomeBusca: jose - se contem, não retorna -1, o indice representa 
+    // o caractere da filtragem
+    return clientes.filter(cliente => cliente.nome?.indexOf(nomeBusca) !== -1)
   }
 
   private obterStorage() : Cliente[]{
