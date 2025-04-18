@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatButtonModule } from '@angular/material/button'
 import { Cliente } from './cliente';
 import { ClienteService } from '../cliente.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -31,7 +31,8 @@ export class CadastroComponent implements OnInit {
 
   constructor(
     private service: ClienteService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -39,15 +40,24 @@ export class CadastroComponent implements OnInit {
         const params = query[ 'params' ]
         const id = params[ 'id' ]
         if(id){
-          this.atualizando = true;
-          this.cliente = this.service.buscarClientePorId(id) || Cliente.newCliente();
+          let clienteEncontrado = this.service.buscarClientePorId(id);
+
+          if(clienteEncontrado){
+            this.atualizando = true;
+            this.cliente = clienteEncontrado;
+          }
         }
     } )
   }
 
   salvar(){
-    this.service.salvar(this.cliente);
-    this.cliente = Cliente.newCliente();
+    if (!this.atualizando){
+      this.service.salvar(this.cliente);
+      this.cliente = Cliente.newCliente();
+    } else {
+      this.service.atualizar(this.cliente);
+      this.router.navigate(['/consulta'])
+    }
   }
 
 }
