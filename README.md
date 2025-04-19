@@ -1,3 +1,10 @@
+Project made with Udemy course:Angular 19 - Curso Completo do Iniciante ao Avançado (2025)
+By: Dougllas
+
+URL: https://www.udemy.com/course/angular-curso-completo-do-iniciante-ao-avancado/?couponCode=25BBPMXPLOYTRMT
+
+Just for studies, non-professional and non-usable in real world.
+
 # CrudAngularMaterial
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
